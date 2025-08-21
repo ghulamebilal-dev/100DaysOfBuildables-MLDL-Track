@@ -1,13 +1,13 @@
 # Day 1 — Task 1: Understanding AI, ML, DL, GenAI, LLMs, Deepfakes and Chatbots  
 
-##  Overview  
+## Overview  
 This task focuses on building a **strong foundation in Artificial Intelligence (AI)** by exploring key terminologies.  
 In today’s tech-driven world, words like **AI, ML, DL, and GenAI** are often used interchangeably, but each has a distinct role.  
 Understanding these terms clearly will help in mastering advanced AI concepts in the upcoming tasks.  
 
 ---
 
-##  Key Terminologies  
+## Key Terminologies  
 
 - **Artificial Intelligence (AI):**  
   The broad concept of machines performing tasks that normally require human intelligence — such as decision-making, problem-solving, and reasoning.  
