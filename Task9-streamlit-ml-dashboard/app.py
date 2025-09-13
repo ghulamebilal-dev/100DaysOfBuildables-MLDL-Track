@@ -6,7 +6,12 @@ from sklearn.model_selection import train_test_split
 
 st.title("House Price Dashboard")
 
-df = pd.read_csv('data/house_prices.csv')
+from pathlib import Path
+import pandas as pd
+
+DATA_PATH = Path(__file__).resolve().parent / "data" / "house_prices.csv"
+df = pd.read_csv(DATA_PATH)
+
 st.write("## Dataset Preview")
 st.dataframe(df)
 
