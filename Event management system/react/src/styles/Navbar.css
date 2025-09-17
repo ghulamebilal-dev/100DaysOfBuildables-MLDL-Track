@@ -1,0 +1,30 @@
+.nav-link {
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease;
+  color: #1f2937; /* Default text color for light mode (gray-800) */
+}
+
+.dark .nav-link {
+  color: #e5e7eb; /* Light gray text for dark mode (gray-200) */
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -3px;
+  background-color: #a855f7; /* Tailwind purple-500 */
+  transition: width 0.4s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #a855f7; /* Purple on hover */
+}
+
