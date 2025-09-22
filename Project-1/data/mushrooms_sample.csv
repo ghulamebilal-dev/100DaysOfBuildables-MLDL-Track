@@ -1,0 +1,11 @@
+class,cap-shape,cap-surface,cap-color,bruises,odor,gill-attachment,gill-spacing,gill-size,gill-color,stalk-shape,stalk-root,stalk-surface-above-ring,stalk-surface-below-ring,stalk-color-above-ring,stalk-color-below-ring,veil-type,veil-color,ring-number,ring-type,spore-print-color,population,habitat
+e,x,s,n,t,p,f,c,b,k,e,c,s,s,n,n,p,w,n,c,k,a,d
+p,x,s,n,t,p,f,c,b,k,e,c,s,s,n,n,p,w,n,c,k,a,d
+e,b,s,n,f,n,f,c,b,n,e,c,s,s,n,n,p,w,n,c,n,a,d
+e,x,y,n,f,n,f,w,b,n,e,c,s,s,n,n,p,w,n,c,n,d,g
+p,f,s,y,t,a,f,c,b,k,e,c,s,s,n,n,p,o,n,v,k,m,l
+e,k,s,n,f,n,f,w,b,n,e,c,s,s,n,n,p,w,n,c,n,a,d
+p,x,s,n,t,p,f,c,b,k,e,c,s,s,n,n,p,w,n,c,k,a,d
+e,f,s,n,f,n,f,w,b,n,e,c,s,s,n,n,p,w,n,c,n,a,d
+p,x,s,n,t,p,f,c,b,k,e,c,s,s,n,n,p,w,n,c,k,a,d
+e,x,s,n,f,n,f,w,b,n,e,c,s,s,n,n,p,w,n,c,n,a,d

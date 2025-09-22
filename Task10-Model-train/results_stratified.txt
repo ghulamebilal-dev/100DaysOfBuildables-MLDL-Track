@@ -1,0 +1,23 @@
+Mushroom Classification - Logistic Regression (Improved Baseline)
+
+Train Accuracy: 0.875000
+Test Accuracy: 1.000000
+F1 Score (Test, weighted): 1.000000
+
+Cross-validation (5-fold Stratified):
+Accuracy scores: [0.5, 1. , 1. , 1. , 1. ]
+Mean CV Accuracy: 0.9000  Std: 0.2000
+
+F1 (weighted) CV scores: [0.6667, 1.    , 1.    , 1.    , 1.    ]
+Mean CV F1-weighted: 0.9333  Std: 0.1333
+
+Classification Report (Test):
+              precision    recall  f1-score   support
+
+           e       1.00      1.00      1.00         1
+           p       1.00      1.00      1.00         1
+
+    accuracy                           1.00         2
+   macro avg       1.00      1.00      1.00         2
+weighted avg       1.00      1.00      1.00         2
+
