@@ -1,0 +1,4 @@
+    Model,Accuracy (%),Comments
+    Logistic Regression (Baseline),100.0,Standard linear classifier
+    Decision Tree (Alternative),100.0,Tree-based splits; good for non-linearity
+    K-Nearest Neighbors (Alternative),100.0,Distance-based method; needs scaling
