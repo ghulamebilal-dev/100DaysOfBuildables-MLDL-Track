@@ -79,6 +79,8 @@ plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.tight_layout()
 plt.savefig("decision_tree_confusion_matrix.png")
-plt.close()
+plt.close() 
 
 print("✅ All files generated successfully!")
+print("Comparison Table: model_comparison.csv")
+
