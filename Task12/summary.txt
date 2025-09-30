@@ -1,0 +1,5 @@
+Clustering analysis for provided Wine dataset (UCI style wine.data)
+Samples: 178, Features used: 13
+KMeans: k=3
+DBSCAN best params: eps=2.400, min_samples=3
+DBSCAN best silhouette: 0.2143683585627416
