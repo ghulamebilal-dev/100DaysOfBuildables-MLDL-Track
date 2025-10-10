@@ -1,0 +1,13 @@
+\nTraceback (most recent call last):
+  File "/mnt/data/ensemble_project/src/visualization/feature_importance.py", line 55, in <module>
+    main()
+  File "/mnt/data/ensemble_project/src/visualization/feature_importance.py", line 45, in main
+    pipeline, meta, model_name = load_pipeline(pipeline_path)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/ensemble_project/src/visualization/feature_importance.py", line 7, in load_pipeline
+    obj = joblib.load(path)
+          ^^^^^^^^^^^^^^^^^
+  File "/home/sandbox/.local/lib/python3.11/site-packages/joblib/numpy_pickle.py", line 735, in load
+    with open(filename, "rb") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/ensemble_project/src/models/best_pipeline.pkl'

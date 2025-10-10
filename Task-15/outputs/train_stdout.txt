@@ -1,0 +1,6 @@
+\n/home/sandbox/.local/lib/python3.11/site-packages/xgboost/compat.py:31: FutureWarning: pandas.Int64Index is deprecated and will be removed from pandas in a future version. Use pandas.Index with the appropriate dtype instead.
+  from pandas import MultiIndex, Int64Index
+Traceback (most recent call last):
+  File "/mnt/data/ensemble_project/src/models/train_models.py", line 9, in <module>
+    from src.data.preprocessing import build_preprocessor
+ModuleNotFoundError: No module named 'src'
