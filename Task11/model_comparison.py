@@ -32,7 +32,7 @@ lr_acc = accuracy_score(y_test, lr_preds)
 dt_model = DecisionTreeClassifier(random_state=42)
 dt_model.fit(X_train, y_train)
 dt_preds = dt_model.predict(X_test)
-dt_acc = accuracy_score(y_test, dt_preds)
+dt_acc = accuracy_score(y_test, dt_preds)   
 
 # K-Nearest Neighbors (Alternative)
 knn_model = KNeighborsClassifier(n_neighbors=5)
