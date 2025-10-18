@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gaming Showcase</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1f2e;
+        color: #f5f5f5;
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 48px;
+        letter-spacing: 2px;
+      }
+
+      /* Scroller Container */
+      .scroller-container {
+        position: relative;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .scroller-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .scroller-wrapper::-webkit-scrollbar {
+        display: none;
+      }
+
+      .scroller-content {
+        display: flex;
+        gap: 24px;
+      }
+
+      /* Navigation Buttons */
+      .nav-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        background-color: rgba(30, 35, 50, 0.8);
+        border: 2px solid #3a4052;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      .nav-button:hover {
+        background-color: rgba(30, 35, 50, 0.95);
+      }
+
+      .nav-button.left {
+        left: 20px;
+      }
+
+      .nav-button.right {
+        right: 20px;
+      }
+
+      .nav-button svg {
+        width: 24px;
+        height: 24px;
+        stroke: #f5f5f5;
+      }
+
+      /* Feature Card (Top Section) */
+      .feature-card {
+        min-width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 48px;
+        padding: 0 60px;
+      }
+
+      .feature-image {
+        width: 50%;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .feature-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .feature-content {
+        width: 50%;
+      }
+
+      .feature-title {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 16px;
+      }
+
+      .feature-subtitle {
+        font-size: 14px;
+        color: #9ca3af;
+        letter-spacing: 3px;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .feature-description {
+        font-size: 18px;
+        color: rgba(245, 245, 245, 0.8);
+        line-height: 1.6;
+        max-width: 600px;
+      }
+
+      /* Game Mode Card (Bottom Section) */
+      .game-mode-card {
+        min-width: 400px;
+        flex-shrink: 0;
+      }
+
+      .card-inner {
+        background-color: #242938;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid #3a4052;
+        transition: transform 0.3s;
+        height: 480px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-inner:hover {
+        transform: scale(1.05);
+      }
+
+      .card-image-container {
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .card-title-badge {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        right: 16px;
+        z-index: 10;
+      }
+
+      .badge-inner {
+        background-color: #d4a93d;
+        padding: 8px 24px;
+        display: inline-block;
+      }
+
+      .card-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #1a1f2e;
+        letter-spacing: 2px;
+      }
+
+      .card-image {
+        width: 100%;
+        height: 256px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .card-description-container {
+        padding: 24px;
+        flex: 1;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .card-description {
+        font-size: 15px;
+        color: rgba(245, 245, 245, 0.7);
+        line-height: 1.6;
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      /* Pagination Dots */
+      .dots-container {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 24px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba(156, 163, 175, 0.3);
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .dot.active {
+        width: 32px;
+        border-radius: 4px;
+        background-color: #d4a93d;
+      }
+
+      /* Second Section Background */
+      .section-two {
+        background-color: rgba(36, 41, 56, 0.3);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .feature-card {
+          flex-direction: column;
+          padding: 0 20px;
+        }
+
+        .feature-image,
+        .feature-content {
+          width: 100%;
+        }
+
+        .feature-title {
+          font-size: 32px;
+        }
+
+        .section-title {
+          font-size: 32px;
+        }
+
+        .game-mode-card {
+          min-width: 340px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Section - Feature Showcase -->
+    <section class="section">
+      <div class="scroller-container">
+        <button class="nav-button left" onclick="scrollFeatures('left')">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+
+        <div class="scroller-wrapper" id="featureScroller">
+          <div class="scroller-content">
+            <!-- Feature 1 -->
+            <div class="feature-card">
+              <div class="feature-image">
+                <img
+                  src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1280&h=720&fit=crop"
+                  alt="New Mechanics"
+                />
+              </div>
+              <div class="feature-content">
+                <h2 class="feature-title">NEW MECHANICS</h2>
+                <p class="feature-subtitle">VERTICALITY</p>
+                <p class="feature-description">
+                  The high ground will now confer a bonus to infantry, bringing
+                  a new layer to the franchises renowned environmental based
+                  gameplay.
+                </p>
+              </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-card">
+              <div class="feature-image">
+                <img
+                  src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1280&h=720&fit=crop"
+                  alt="Dynamic Warfare"
+                />
+              </div>
+              <div class="feature-content">
+                <h2 class="feature-title">DYNAMIC WARFARE</h2>
+                <p class="feature-subtitle">TACTICAL SUPERIORITY</p>
+                <p class="feature-description">
+                  Command your forces with unprecedented strategic depth. Every
+                  decision impacts the battlefield as you adapt to ever-changing
+                  combat scenarios.
+                </p>
+              </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card">
+              <div class="feature-image">
+                <img
+                  src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=1280&h=720&fit=crop"
+                  alt="Enhanced Combat"
+                />
+              </div>
+              <div class="feature-content">
+                <h2 class="feature-title">ENHANCED COMBAT</h2>
+                <p class="feature-subtitle">REALISTIC BATTLES</p>
+                <p class="feature-description">
+                  Experience the most authentic warfare simulation with improved
+                  physics, destructible environments, and realistic unit
+                  behavior.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-button right" onclick="scrollFeatures('right')">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+
+        <div class="dots-container" id="featureDots"></div>
+      </div>
+    </section>
+
+    <!-- Bottom Section - Play Your Way -->
+    <section class="section section-two">
+      <h2 class="section-title">PLAY YOUR WAY</h2>
+
+      <div class="scroller-container">
+        <button class="nav-button left" onclick="scrollModes('left')">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+
+        <div class="scroller-wrapper" id="modeScroller">
+          <div class="scroller-content">
+            <!-- Mode 1 -->
+            <div class="game-mode-card">
+              <div class="card-inner">
+                <div class="card-image-container">
+                  <div class="card-title-badge">
+                    <div class="badge-inner">
+                      <h3 class="card-title">DYNAMIC CAMPAIGN</h3>
+                    </div>
+                  </div>
+                  <img
+                    class="card-image"
+                    src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=500&fit=crop"
+                    alt="Dynamic Campaign"
+                  />
+                </div>
+                <div class="card-description-container">
+                  <p class="card-description">
+                    Experience a new highly mobile and non-linear battle
+                    experience. Re-live epic theatre-defining battles, such as
+                    Tobruk, El-Alamein and more.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mode 2 -->
+            <div class="game-mode-card">
+              <div class="card-inner">
+                <div class="card-image-container">
+                  <div class="card-title-badge">
+                    <div class="badge-inner">
+                      <h3 class="card-title">ITALIAN DYNAMIC CAMPAIGN</h3>
+                    </div>
+                  </div>
+                  <img
+                    class="card-image"
+                    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop"
+                    alt="Italian Campaign"
+                  />
+                </div>
+                <div class="card-description-container">
+                  <p class="card-description">
+                    The new Dynamic Campaign Map delivers full 'sandbox-style'
+                    gameplay, allowing players to command the overall war effort
+                    in Italy and experience an unprecedented level of strategic
+                    choice.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mode 3 -->
+            <div class="game-mode-card">
+              <div class="card-inner">
+                <div class="card-image-container">
+                  <div class="card-title-badge">
+                    <div class="badge-inner">
+                      <h3 class="card-title">MULTIPLAYER</h3>
+                    </div>
+                  </div>
+                  <img
+                    class="card-image"
+                    src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=500&fit=crop"
+                    alt="Multiplayer"
+                  />
+                </div>
+                <div class="card-description-container">
+                  <p class="card-description">
+                    The evolution of multiplayer gameplay, new mechanics, new
+                    factions, and more units than ever before! Play with up to
+                    four friends in vs AI Co-Op, or engage in blistering PvP
+                    combat in modes from 1v1 to 4v4.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mode 4 -->
+            <div class="game-mode-card">
+              <div class="card-inner">
+                <div class="card-image-container">
+                  <div class="card-title-badge">
+                    <div class="badge-inner">
+                      <h3 class="card-title">CO-OP MISSIONS</h3>
+                    </div>
+                  </div>
+                  <img
+                    class="card-image"
+                    src="https://images.unsplash.com/photo-1534670007418-fbb7f6cf32c3?w=800&h=500&fit=crop"
+                    alt="Co-op"
+                  />
+                </div>
+                <div class="card-description-container">
+                  <p class="card-description">
+                    Bring your friends and execute your strategy together. Wage
+                    war from the deserts of North Africa to the villages of
+                    Italy in cooperative multiplayer missions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-button right" onclick="scrollModes('right')">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+
+        <div class="dots-container" id="modeDots"></div>
+      </div>
+    </section>
+
+    <script>
+      // Feature Section Scrolling
+      let featureIndex = 0;
+      const featureScroller = document.getElementById("featureScroller");
+      const featureCards = document.querySelectorAll(".feature-card");
+      const featureDotsContainer = document.getElementById("featureDots");
+
+      // Create dots for features
+      featureCards.forEach((_, index) => {
+        const dot = document.createElement("div");
+        dot.className = "dot" + (index === 0 ? " active" : "");
+        dot.onclick = () => scrollToFeature(index);
+        featureDotsContainer.appendChild(dot);
+      });
+
+      function scrollFeatures(direction) {
+        if (direction === "left" && featureIndex > 0) {
+          featureIndex--;
+        } else if (
+          direction === "right" &&
+          featureIndex < featureCards.length - 1
+        ) {
+          featureIndex++;
+        }
+        scrollToFeature(featureIndex);
+      }
+
+      function scrollToFeature(index) {
+        featureIndex = index;
+        featureScroller.scrollLeft = featureScroller.offsetWidth * index;
+        updateFeatureDots();
+      }
+
+      function updateFeatureDots() {
+        const dots = featureDotsContainer.querySelectorAll(".dot");
+        dots.forEach((dot, index) => {
+          dot.className = "dot" + (index === featureIndex ? " active" : "");
+        });
+      }
+
+      // Mode Section Scrolling
+      let modeIndex = 0;
+      const modeScroller = document.getElementById("modeScroller");
+      const modeCards = document.querySelectorAll(".game-mode-card");
+      const modeDotsContainer = document.getElementById("modeDots");
+
+      // Create dots for modes
+      modeCards.forEach((_, index) => {
+        const dot = document.createElement("div");
+        dot.className = "dot" + (index === 0 ? " active" : "");
+        dot.onclick = () => scrollToMode(index);
+        modeDotsContainer.appendChild(dot);
+      });
+
+      function scrollModes(direction) {
+        if (direction === "left" && modeIndex > 0) {
+          modeIndex--;
+        } else if (direction === "right" && modeIndex < modeCards.length - 1) {
+          modeIndex++;
+        }
+        scrollToMode(modeIndex);
+      }
+
+      function scrollToMode(index) {
+        modeIndex = index;
+        const cardWidth = modeCards[0].offsetWidth;
+        const gap = 24; // gap between cards
+        modeScroller.scrollLeft = (cardWidth + gap) * index;
+        updateModeDots();
+      }
+
+      function updateModeDots() {
+        const dots = modeDotsContainer.querySelectorAll(".dot");
+        dots.forEach((dot, index) => {
+          dot.className = "dot" + (index === modeIndex ? " active" : "");
+        });
+      }
+    </script>
+  </body>
+</html>
